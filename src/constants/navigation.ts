@@ -3,6 +3,7 @@ export const navigation = [
   { label: "Início", href: "#home" },
   { label: "Sobre", href: "#about" },
   { label: "Resultados", href: "#results" },
+  { label: "Unidades", href: "#units" },
   { label: "Contato", href: "#contact" },
 ];
 

@@ -91,4 +91,6 @@ export const site = {
   mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     `${address.street}, ${address.district}, ${address.city} - ${address.state}, ${address.zip}`,
   )}`,
+  whatsapp: { display: "(47) 9XXXX-XXXX", number: "5547900000000" }, // TODO: número real, só dígitos com 55
+  email: "contato@exemplo.com.br", // TODO
 };
