@@ -7,9 +7,19 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-montserrat);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-playfair);
+
+  /* Cores da marca, disponíveis como bg-sage, text-rose, fill-sage, border-wood etc. */
+  --color-sage: var(--sage);
+  --color-sage-strong: var(--sage-strong);
+  --color-rose: var(--rose);
+  --color-rose-strong: var(--rose-strong);
+  --color-wood: var(--wood);
+  --color-offwhite: var(--offwhite);
+  --color-graphite: var(--graphite);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,73 +58,95 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/*
+ * Paleta oficial Exame Certo:
+ * Verde sálvia #5E8F78 · Rosa queimado #D49893 · Off-white #F7F2EC · Madeira clara #E2C9A8 · Grafite #2F2F2F
+ *
+ * O verde e o rosa originais são claros demais para texto pequeno e botões
+ * (contraste abaixo de 4.5:1). Por isso existem as versões "strong", mais escuras,
+ * usadas onde há texto. As originais ficam para logo, ícones e detalhes.
+ */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --sage: oklch(0.608 0.064 163.5); /* #5E8F78 */
+  --sage-strong: oklch(0.507 0.058 163.3); /* #45705C, 5.6:1 com branco */
+  --rose: oklch(0.736 0.073 24.3); /* #D49893 */
+  --rose-strong: oklch(0.58 0.105 25.3); /* #B0605A, 4.3:1 no fundo, ok para títulos */
+  --wood: oklch(0.848 0.052 74.6); /* #E2C9A8 */
+  --offwhite: oklch(0.963 0.01 72.7); /* #F7F2EC */
+  --graphite: oklch(0.305 0 0); /* #2F2F2F */
+
+  --background: oklch(0.986 0.005 78.3); /* #FCFAF7, off-white bem leve */
+  --foreground: var(--graphite);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: var(--graphite);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --popover-foreground: var(--graphite);
+  --primary: var(--sage-strong);
+  --primary-foreground: oklch(0.986 0.005 78.3);
+  --secondary: var(--offwhite);
+  --secondary-foreground: var(--graphite);
+  --muted: oklch(0.946 0.014 74.4); /* #F3ECE3 */
+  --muted-foreground: oklch(0.511 0.011 62.4); /* #6B6560, 5.5:1 */
+  --accent: oklch(0.946 0.014 74.4);
+  --accent-foreground: var(--graphite);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --border: oklch(0.907 0.016 73.7); /* #E7DFD5 */
+  --input: oklch(0.907 0.016 73.7);
+  --ring: var(--sage);
+  --chart-1: var(--sage);
+  --chart-2: var(--rose);
+  --chart-3: var(--wood);
+  --chart-4: var(--sage-strong);
+  --chart-5: var(--graphite);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: var(--offwhite);
+  --sidebar-foreground: var(--graphite);
+  --sidebar-primary: var(--sage-strong);
+  --sidebar-primary-foreground: oklch(0.986 0.005 78.3);
+  --sidebar-accent: oklch(0.946 0.014 74.4);
+  --sidebar-accent-foreground: var(--graphite);
+  --sidebar-border: oklch(0.907 0.016 73.7);
+  --sidebar-ring: var(--sage);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  /* No escuro as cores da marca clareiam para manter contraste */
+  --sage: oklch(0.747 0.053 163.7); /* #8FB8A4 */
+  --sage-strong: oklch(0.747 0.053 163.7);
+  --rose: oklch(0.824 0.051 24.3); /* #E5B9B5 */
+  --rose-strong: oklch(0.824 0.051 24.3);
+
+  --background: oklch(0.226 0.002 106.6); /* #1C1C1B */
+  --foreground: var(--offwhite);
+  --card: oklch(0.268 0.002 106.5); /* #262625 */
+  --card-foreground: var(--offwhite);
+  --popover: oklch(0.268 0.002 106.5);
+  --popover-foreground: var(--offwhite);
+  --primary: var(--sage);
+  --primary-foreground: oklch(0.226 0.002 106.6);
+  --secondary: var(--graphite);
+  --secondary-foreground: var(--offwhite);
+  --muted: var(--graphite);
+  --muted-foreground: oklch(0.716 0.011 67.6); /* #A8A29C */
+  --accent: var(--graphite);
+  --accent-foreground: var(--offwhite);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --ring: var(--sage);
+  --chart-1: var(--sage);
+  --chart-2: var(--rose);
+  --chart-3: var(--wood);
+  --chart-4: oklch(0.608 0.064 163.5);
+  --chart-5: var(--offwhite);
+  --sidebar: oklch(0.268 0.002 106.5);
+  --sidebar-foreground: var(--offwhite);
+  --sidebar-primary: var(--sage);
+  --sidebar-primary-foreground: oklch(0.226 0.002 106.6);
+  --sidebar-accent: var(--graphite);
+  --sidebar-accent-foreground: var(--offwhite);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: var(--sage);
 }
 
 @layer base {
@@ -130,6 +162,12 @@
   }
   html {
     @apply font-sans;
+  }
+  /* Títulos na Playfair Display, como pede a identidade visual */
+  h1,
+  h2,
+  h3 {
+    @apply font-heading;
   }
 }
 
