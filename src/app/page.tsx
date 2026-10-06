@@ -1,8 +1,12 @@
+import { About } from "@/components/about";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { Reveal } from "@/components/animations/reveal";
+import { Units } from "@/components/units";
+import { Contact } from "@/components/contact";
 import { cn } from "@/lib/utils";
+import { Result } from "@/components/form";
 
 /*
  * Cada seção ocupa a área visível abaixo do header (48px = h-12).
@@ -22,24 +26,32 @@ export default function Home() {
         </section>
 
         <section id="about" className={cn(section, "bg-muted")}>
-          {/* TODO: sobre */}
+          <About />
+        </section>
+
+        {/* O form fica fora do h2: dentro dele herdaria a fonte e o peso do título */}
+        <section id="results" className={cn(section, "grid items-center gap-10 md:grid-cols-2")}>
           <Reveal>
-            <h2 className="text-4xl font-semibold tracking-tight">Sobre</h2>
+            <p className="text-[0.7rem] font-medium tracking-[0.25em] text-primary uppercase">Resultados</p>
+            <h2 className="mt-3 text-4xl leading-tight font-semibold text-balance md:text-5xl">
+              Seu resultado, <span className="text-rose-strong italic">sem sair de casa.</span>
+            </h2>
+            <p className="mt-4 max-w-md text-pretty text-muted-foreground">
+              Use a chave e a senha que você recebeu no atendimento para ver e baixar seus exames.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.15} className="flex justify-center md:justify-end">
+            <Result />
           </Reveal>
         </section>
 
-        <section id="results" className={section}>
-          {/* TODO: formulário de retirada de exames */}
-          <Reveal>
-            <h2 className="text-4xl font-semibold tracking-tight">Resultados</h2>
-          </Reveal>
+        <section id="units" className={cn(section, "bg-muted")}>
+          <Units />
         </section>
 
-        <section id="contact" className={cn(section, "bg-muted")}>
-          {/* TODO: contato */}
-          <Reveal>
-            <h2 className="text-4xl font-semibold tracking-tight">Contato</h2>
-          </Reveal>
+        <section id="contact" className={section}>
+          <Contact />
         </section>
       </main>
 
