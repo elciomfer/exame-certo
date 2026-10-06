@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, type Variants } from "motion/react";
 import { FileText, Languages, Menu, Moon, Sun } from "lucide-react";
+import { Logo } from "@/components/logo";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -122,8 +123,8 @@ export function Header() {
     >
       <div className="mx-auto flex h-12 max-w-5xl items-center gap-2 px-4 sm:px-6 md:grid md:grid-cols-[1fr_auto_1fr]">
         {/* Marca */}
-        <Link href="/" className="mr-auto text-sm font-semibold tracking-tight md:mr-0">
-          {site.name}
+        <Link href="/" aria-label={`${site.name}, página inicial`} className="mr-auto md:mr-0 md:justify-self-start">
+          <Logo className="text-[0.95rem]" />
         </Link>
 
         {/* Navegação (desktop) com indicador que desliza até o link ativo */}
@@ -137,14 +138,14 @@ export function Header() {
                     href={href}
                     aria-current={isActive ? "true" : undefined}
                     className={cn(
-                      "relative isolate block rounded-full px-3 py-1.5 text-xs transition-colors",
-                      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                      "relative isolate block rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
+                      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground",
                     )}
                   >
                     {isActive && (
                       <motion.span
                         layoutId="nav-active"
-                        className="absolute inset-0 -z-10 rounded-full bg-muted"
+                        className="absolute inset-0 -z-10 rounded-full bg-primary/10"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                       />
                     )}
@@ -183,7 +184,9 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="top" className="gap-0 pb-6">
               <SheetHeader>
-                <SheetTitle className="text-sm font-semibold tracking-tight">{site.name}</SheetTitle>
+                <SheetTitle className="font-sans">
+                  <Logo className="text-[0.95rem]" />
+                </SheetTitle>
               </SheetHeader>
 
               <nav aria-label="Principal" className="px-4">
@@ -194,8 +197,8 @@ export function Header() {
                         href={href}
                         onClick={() => setOpen(false)}
                         className={cn(
-                          "block py-2.5 text-2xl font-semibold tracking-tight transition-colors hover:text-foreground",
-                          active === href.slice(1) ? "text-foreground" : "text-muted-foreground",
+                          "block py-2.5 font-heading text-3xl font-semibold transition-colors hover:text-foreground",
+                          active === href.slice(1) ? "text-primary" : "text-muted-foreground",
                         )}
                       >
                         {label}

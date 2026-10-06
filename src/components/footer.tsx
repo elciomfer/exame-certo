@@ -1,24 +1,35 @@
 import Link from "next/link";
 import { RevealGroup, RevealItem } from "@/components/animations/reveal";
+import { Logo } from "@/components/logo";
 import { Separator } from "@/components/ui/separator";
 import { site } from "@/constants/company";
 import { navigation, results } from "@/constants/navigation";
 
 const linkClass = "transition-colors hover:text-foreground hover:underline";
 
+/* Os títulos das colunas são h2 por semântica, mas ficam na Montserrat (font-sans), não na Playfair */
+const columnTitle = "font-sans font-semibold text-foreground";
+
 export function Footer() {
   const { address } = site;
 
   return (
-    <footer className="bg-muted/60 text-xs text-muted-foreground">
+    <footer className="bg-muted text-xs text-muted-foreground">
+      {/* Faixa com as cores da marca, como nos elementos gráficos da identidade */}
+      <div aria-hidden className="flex h-1">
+        <span className="flex-1 bg-sage" />
+        <span className="flex-1 bg-rose" />
+        <span className="flex-1 bg-wood" />
+      </div>
+
       <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
         <RevealGroup className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           {/* Marca */}
           <RevealItem className="sm:col-span-2">
-            <Link href="/" className="text-sm font-semibold tracking-tight text-foreground">
-              {site.name}
+            <Link href="/" aria-label={`${site.name}, página inicial`} className="inline-block text-foreground">
+              <Logo tagline className="text-lg" />
             </Link>
-            <p className="mt-2 max-w-xs text-pretty">{site.description}</p>
+            <p className="mt-4 max-w-xs text-pretty">{site.description}</p>
             <a href={results} className="mt-4 inline-block font-medium text-primary hover:underline">
               Retirar resultado de exame
             </a>
@@ -27,7 +38,7 @@ export function Footer() {
           {/* Navegação */}
           <RevealItem>
             <nav aria-label="Rodapé">
-              <h2 className="font-semibold text-foreground">Navegação</h2>
+              <h2 className={columnTitle}>Navegação</h2>
               <ul className="mt-3 space-y-2">
                 {navigation.map(({ label, href }) => (
                   <li key={href}>
@@ -42,7 +53,7 @@ export function Footer() {
 
           {/* Contato */}
           <RevealItem>
-            <h2 className="font-semibold text-foreground">Atendimento</h2>
+            <h2 className={columnTitle}>Atendimento</h2>
             <ul className="mt-3 space-y-2">
               <li>
                 <a href={site.phone.href} className={linkClass}>
